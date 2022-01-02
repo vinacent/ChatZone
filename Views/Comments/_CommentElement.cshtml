@@ -1,0 +1,35 @@
+@using ChatZone.Helpers
+@model ChatZone.Entities.Comment
+
+@{
+    Layout = null;
+    var likeCountId = "ref" + Guid.NewGuid();
+}
+@if (Model == null)
+{
+    return;
+}
+
+<div class="vc-comment-el @(Model.ParentId != null && Model.ParentId != Guid.Empty ? "vc-reply" : "")">
+    <div class="vc-flex vc-content-between">
+        <div><span class="vc-fullname-commenter">@Model.FullName</span> · <span class="vc-time-relative">@Model.CreationTime.RelativeTime()</span></div>
+        <div class="vc-ml-auto" style="display: @(Model.Likes <= 0 ? "none" : "block")"><span class="vc-like-count" id="@likeCountId">@Model.Likes</span> 👍</div>
+    </div>
+    <div class="vc-comment-x1">
+        <div>@Model.Content</div>
+        @if (Model.ImagePath.Length > 0)
+        {
+            <div class="vc-img-container">
+                <img src="@($"{Html.ViewContext.HttpContext.Request.Scheme}://{Html.ViewContext.HttpContext.Request.Host}".TrimEnd('/') + '/' + Model.ImagePath)" alt="@Model.FullName" class="vc-comment-img"/>
+            </div>
+        }
+        <div><span class="vc-hoverable vc-like-comment" data-like-id="@Model.Id" data-ref="#@likeCountId">Thích</span> · <span class="vc-hoverable vc-reply-comment" data-reply-to="@Model.FullName" data-reply-id="@Model.Id">Trả lời</span></div>
+    </div>
+</div>
+@if (Model.Replies.Count > 0)
+{
+    @foreach (var item in Model.Replies)
+    {
+        <partial name="_CommentElement" model="@item"/>
+    }
+}

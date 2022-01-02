@@ -1,0 +1,14 @@
+@model ChatZone.Models.Comments.LoadCommnetViewModel
+
+@{
+    Layout = null;
+}
+@if (Model == null || Model.Data.Count <= 0)
+{
+    return;
+}
+
+@foreach (var item in Model.Data)
+{
+    <partial name="_CommentElement" model="@item"/>
+}

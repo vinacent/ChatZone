@@ -1,0 +1,52 @@
+@model ChatZone.Models.Account.RegisterDto
+@{
+    ViewData["Title"] = "Đăng ký";
+    ViewBag.IsEmptyLayout = true;
+}
+
+@section scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}
+
+<div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+            <div class="col-lg-4 mx-auto">
+                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                    <div class="brand-logo">
+                        <img src="images/logo.png" alt="logo">
+                    </div>
+                    <h4>Xin chào! Nhập một vài thông tin cơ bản</h4>
+                    <h6 class="fw-light">Vui lòng nhớ kỹ mật khẩu, rất khó để lấy lại mật khẩu trong hệ thống mạng LAN này.</h6>
+                    <form class="pt-3" action="/account/register" method="POST">
+                        <div class="form-group">
+                            <input type="text" asp-for="FullName" class="form-control form-control-lg"
+                                   placeholder="Họ và tên">
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" asp-for="UserName" class="form-control form-control-lg"
+                                   placeholder="Tên đăng nhập">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" asp-for="Password" class="form-control form-control-lg"
+                                   placeholder="Mật khẩu">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                                ĐĂNG KÝ
+                            </button>
+                        </div>
+                        <div class="text-center mt-4 fw-light">
+                            Bạn đã có tài khoản? <a href="/account/login" class="text-primary">Đăng nhập ngay</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+</div>

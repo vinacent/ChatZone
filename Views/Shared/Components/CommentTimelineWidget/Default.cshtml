@@ -1,0 +1,83 @@
+@using ChatZone.Helpers
+@model ChatZone.Views.Shared.Components.CommentTimelineWidget.CommentTimelineViewModel
+@if (Model == null || Model.Data.Count <= 0)
+{
+    <div class="alert alert-danger w-100" role="alert">
+        Hiện tại chưa có bình luận nào
+    </div>
+}
+else
+{
+    <div class="card card-rounded">
+        <form action="/">
+            <div class="form-group mb-2">
+                <input type="text" name="Keyword" class="form-control form-control-lg"
+                       value="@Model.Filter.Keyword"
+                       placeholder="Lọc tìm bình luận theo nội dung">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-sm btn-primary">Tìm kiếm</button>
+            </div>
+        </form>
+        <hr>
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h4 class="card-title card-title-dash">Danh sách bình luận</h4>
+                <p class="mb-0">Hiển thị @(Model.Filter.Keyword?.Length > 0 ? "cho \"" + Model.Filter.Keyword + "\"" : "") từ @(Model.Filter.SkipCount + 1) - @(Model.Filter.SkipCount + Model.Data.Count)/@Model.TotalCount</p>
+            </div>
+            <ul class="bullet-line-list">
+                @foreach (var item in Model.Data)
+                {
+                    <li>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="">
+                                    <span class="text-danger" style="font-weight: bold;">
+                                        @item.FullName
+                                    </span> đã bình luận " <span style="font-style: italic; color: dimgray">@item.Content</span> " — @item.Likes lượt thích
+                                </div>
+                                <div class="small">
+                                    tại địa chỉ <a target="_blank" href="@item.Location">@item.Location</a> - <a class="text-danger" href="#" data-bs-toggle="modal" data-bs-target="#rm-cmt-@item.Id">Xóa</a>
+                                </div>
+                                @if (item.ImagePath.Length > 0)
+                                {
+                                    <div>
+                                        <img src="@item.ImagePath" alt="" class="vc-img">
+                                    </div>
+                                }
+                            </div>
+                            <p>@item.CreationTime.RelativeTime()</p>
+                            <div class="modal fade" id="rm-cmt-@item.Id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="rm-cmt-@(item.Id)Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="rm-cmt-@(item.Id)Label">XÓA BÌNH LUẬN</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn thực sự muốn xóa bình luận của <span class="text-danger" style="font-weight: 700;">@item.FullName</span>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                            <a href="/comments/remove?commentId=@item.Id" class="btn btn-danger">Xóa</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="d-flex align-items-center pt-3">
+                <paginate
+                    page-action=""
+                    class="pagination m-0 mx-auto"
+                    skip-count="@Model.Filter.SkipCount"
+                    max-result-count="@Model.Filter.MaxResultCount"
+                    page-route-Keyword="@Model.Filter.Keyword"
+                    total-count="@Model.TotalCount">
+                </paginate>
+            </div>
+        </div>
+    </div>
+}

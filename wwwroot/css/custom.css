@@ -1,0 +1,13 @@
+.navbar .navbar-brand-wrapper .navbar-brand img {
+    height: auto;
+    max-height: 34px;
+}
+
+textarea.form-control {
+    min-height: 4rem;
+}
+
+.vc-img {
+    max-width: 320px;
+    max-height: 320px;
+}

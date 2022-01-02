@@ -1,0 +1,45 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/index">
+                <i class="mdi mdi-grid-large menu-icon"></i>
+                <span class="menu-title">Quản lý</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/personal">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">Cá nhân hóa</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#getCommentBox">
+                <i class="menu-icon mdi mdi-card-text-outline"></i>
+                <span class="menu-title">Lấy khung bình luận</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="modal fade" id="getCommentBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="getCommentBoxLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="getCommentBoxLabel">LẤY KHUNG BÌNH LUẬN</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label>Khung bình luận cơ bản</label>
+                    <textarea rows="3" class="form-control form-control-sm" readonly="readonly"><script src="@($"{Html.ViewContext.HttpContext.Request.Scheme}://{Html.ViewContext.HttpContext.Request.Host}".TrimEnd('/') + '/')clients/runtime.js" id="VinaCent" data-owner="@(User.Identity?.Name)"></script></textarea>
+                </div>
+                @* <div class="form-group"> *@
+                @*     <label>Hoặc cần sử dụng thêm CSS</label> *@
+                @*     <textarea rows="3" class="form-control form-control-sm" readonly="readonly"><script src="@($"{Html.ViewContext.HttpContext.Request.Scheme}://{Html.ViewContext.HttpContext.Request.Host}".TrimEnd('/') + '/')clients/runtime.js" id="VinaCent" data-owner="@(User.Identity?.Name)"></script></textarea> *@
+                @* </div> *@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

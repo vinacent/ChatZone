@@ -1,0 +1,84 @@
+@model ChatZone.Models.Personal.PersonalViewModel
+@{
+    ViewData["Title"] = "Cá nhân hóa";
+    var notify = "";
+    if (ViewBag.Notify != null)
+    {
+        notify = (string)ViewBag.Notify;
+    }
+
+    var error = "";
+    if (ViewBag.Error != null)
+    {
+        error = (string)ViewBag.Error;
+    }
+}
+
+@if (Model == null)
+{
+    return;
+}
+
+<div class="card card-rounded">
+    <div class="card-body">
+        @if (!string.IsNullOrWhiteSpace(notify))
+        {
+            <div class="alert alert-success" role="alert">
+                @Html.Raw(notify)
+            </div>
+        }
+        @if (!string.IsNullOrWhiteSpace(error))
+        {
+            <div class="alert alert-danger" role="alert">
+                @Html.Raw(error)
+            </div>
+        }
+        <form action="/personal" method="POST">
+            <div class="form-group">
+                <label>Tên hiển thị</label>
+                <input type="text" class="form-control form-control-sm" placeholder="Họ và tên hiển thị" asp-for="User.FullName">
+                <span asp-validation-for="User.FullName" class="text-danger small"></span>
+            </div>
+            @* <div class="form-group"> *@
+            @*     <label>Bỏ qua chuỗi truy vấn</label> *@
+            @*     <div class="form-check"> *@
+            @*         <label class="form-check-label"> *@
+            @*             @if (Model.User.IsIgnoreURLQuerystring) *@
+            @*             { *@
+            @*                 <input type="checkbox" class="form-check-input" name="User.IsIgnoreURLQuerystring" value="true" checked="checked"> *@
+            @*             } *@
+            @*             else *@
+            @*             { *@
+            @*                 <input type="checkbox" class="form-check-input" name="User.IsIgnoreURLQuerystring" value="true"> *@
+            @*             } *@
+            @*             Bình luận sẽ được chia sẽ giữa các trang có đường dẫn trước dấu '?' giống nhau *@
+            @*         </label> *@
+            @*     </div> *@
+            @* </div> *@
+            <div class="form-group">
+                <label>Lọc từ xấu</label>
+                <textarea class="form-control form-control-sm" placeholder="Lọc từ xấu" asp-for="User.FilterBadWords"></textarea>
+                <span class="small">Nhập danh sách các từ muốn lọc, phân cách với nhau bằng dấu phẩy hoặc xuống dòng. (Giới hạn 1024 ký tự)</span>
+                <span asp-validation-for="User.FilterBadWords" class="text-danger small"></span>
+            </div>
+            <div class="form-group">
+                <label>Cho phép gửi kèm ảnh</label>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        @if (Model.User.AllowUserPostImage is true)
+                        {
+                            <input type="checkbox" class="form-check-input" name="User.AllowUserPostImage" value="true" checked="checked" data-q1134>
+                        }
+                        else
+                        {
+                            <input type="checkbox" class="form-check-input" name="User.AllowUserPostImage" value="true" data-ađfgdg>
+                        }
+                        Tùy chọn này cho phép người dùng bình luận kèm ảnh
+                    </label>
+                </div>
+            </div>
+
+            <button class="btn btn-sm btn-primary">Cập nhật</button>
+        </form>
+    </div>
+</div>

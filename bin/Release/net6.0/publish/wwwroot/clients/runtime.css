@@ -1,0 +1,142 @@
+.vc-fg {
+    margin-bottom: 1.5rem;
+}
+
+.vc-fg label {
+    font-size: 0.812rem;
+    line-height: 1.4rem;
+    vertical-align: top;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.vc-fg input, .vc-fg textarea {
+    box-sizing: border-box;
+    border: 1px solid #dee2e6;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: 0;
+    min-height: 1.75rem;
+    padding: 0.5rem 0.81rem;
+    display: block;
+    width: 100%;
+    line-height: 1;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.vc-btn {
+    background: #1F3BB3;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 400;
+    border-radius: 5px;
+    box-shadow: none;
+    border-color: #1F3BB3;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.875rem 1.5rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.vc-alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #0000;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+}
+
+.vc-alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.vc-alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
+.vc-fg textarea {
+    min-height: 100px;
+}
+
+#comment-list {
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+.vc-comment-el {
+    margin-bottom: 15px;
+}
+
+.vc-comment-x1 {
+    margin-left: 15px;
+}
+
+.vc-fullname-commenter {
+    font-weight: bold;
+}
+
+.vc-time-relative {
+    color: lightslategray;
+}
+
+.vc-reply {
+    margin-left: 20px;
+    border-left: 1px dot-dash lightslategray;
+}
+
+.vc-hoverable {
+    cursor: pointer;
+    color: #0b5ed7;
+}
+
+.vc-hoverable:hover {
+    text-decoration: underline;
+}
+
+.vc-flex {
+    display: flex;
+}
+
+.vc-content-between {
+    align-content: space-between;
+}
+
+.vc-w-100 {
+    width: 100%;
+}
+
+.vc-ml-auto {
+    margin-left: auto;
+}
+
+.vc-comment-img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.vc-img-container {
+    margin: 10px;
+    padding: 3px;
+    border: 1px solid #0c63e4;
+    border-radius: 4px;
+}
+
+.vc-comment-liked {
+    cursor: unset !important;
+    color: black;
+}
+
+.vc-comment-liked:hover {
+    text-decoration: none !important;
+}

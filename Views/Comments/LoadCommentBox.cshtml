@@ -1,0 +1,36 @@
+@model ChatZone.Models.Comments.CommentDto
+
+@{
+    Layout = null;
+    var AllowUserPostImage = (bool)(ViewBag.AllowUserPostImage != null && ViewBag.AllowUserPostImage == true);
+}
+<link rel="stylesheet" href="@($"{Html.ViewContext.HttpContext.Request.Scheme}://{Html.ViewContext.HttpContext.Request.Host}".TrimEnd('/') + '/')clients/runtime.css">
+<div id="notify"></div>
+<form id="VinaCent_Form" action="@($"{Html.ViewContext.HttpContext.Request.Scheme}://{Html.ViewContext.HttpContext.Request.Host}".TrimEnd('/') + '/')comments/add"
+      method="POST"
+      enctype="multipart/form-data">
+    <input type="hidden" asp-for="GroupOwnerId"/>
+    <input type="hidden" asp-for="Location"/>
+    <input type="hidden" asp-for="ParentId" id="vinacent-comment-parent"/>
+    <input type="hidden" asp-for="ImagePath"/>
+    <div class="vc-fg">
+        <label>Họ và tên</label>
+        <input type="text" placeholder="Họ và tên" asp-for="FullName" required="required" id="vinacent-comment-fullname">
+    </div>
+    <div class="vc-fg">
+        <label>Nội dung bình luận</label>
+        <textarea rows="3" placeholder="Nội dung bình luận" id="vinacent-comment-area" asp-for="Content" required="required"></textarea>
+    </div>
+    @if (AllowUserPostImage)
+    {
+        <div class="vc-fg">
+            <label>Ảnh đính kèm</label>
+            <input type="file" name="file" accept="image/*" id="vinacent-comment-image"/>
+        </div>
+    }
+    <div class="">
+        <button type="submit" class="vc-btn vc-w-100">Gửi bình luận</button>
+    </div>
+</form>
+<hr>
+<div class="" id="comment-list"></div>

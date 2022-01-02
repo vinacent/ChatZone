@@ -1,0 +1,12 @@
+﻿@model ChatZone.Models.Home.HomeViewModel
+@{
+    ViewData["Title"] = "Quản lý";
+}
+<div class="row flex-grow">
+    <div class="col-md-6 col-lg-6 grid-margin stretch-card">
+        <vc:comment-timeline-widget input="@Model!.CommentTimelineFilter"/>
+    </div>
+    <div class="col-md-6 col-lg-6 grid-margin stretch-card">
+        <vc:comment-mostest-page-widget/>
+    </div>
+</div>
